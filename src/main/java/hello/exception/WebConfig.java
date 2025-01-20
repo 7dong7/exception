@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LogInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/css/**" ,"/*.ico", "error", "/error-page/**"); // 오류 페이지 경로
+                .excludePathPatterns("/css/**" ,"/*.ico", "/error", "/error-page/**"); // 오류 페이지 경로
         // excludePathPatterns 를 사용하면 다시 호출되는 요청을 제외할 수 있다
     }
 
