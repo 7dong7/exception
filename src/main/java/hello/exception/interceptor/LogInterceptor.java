@@ -15,20 +15,23 @@ public class LogInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
-        String requestURI = request.getRequestURI();
-        String uuid = UUID.randomUUID().toString();
+
+        String requestURI = request.getRequestURI(); // 요청 url
+        String uuid = UUID.randomUUID().toString(); // 랜덤
         request.setAttribute(LOG_ID, uuid);
         log.info("REQUEST [{}][{}][{}][{}]", uuid, request.getDispatcherType(),
                 requestURI, handler);
         return true;
     }
 
+    // 오류가 발생하면 호출 되지 않는다
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object handler, ModelAndView modelAndView) throws Exception {
         log.info("postHandle [{}]", modelAndView);
     }
 
+    //
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
                                 Object handler, Exception ex) throws Exception {
