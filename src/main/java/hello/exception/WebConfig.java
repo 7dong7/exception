@@ -3,6 +3,7 @@ package hello.exception;
 import hello.exception.filter.LogFilter;
 import hello.exception.interceptor.LogInterceptor;
 import hello.exception.resolver.MyHandlerExceptionResolver;
+import hello.exception.resolver.UserHandlerExceptionResolver;
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -26,9 +27,11 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     // MyHandlerExceptionResolver 등록
+        // 내가 만든 exceptionHandlerResolver 를 만들고 등록 시켜야 한다
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
         resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new UserHandlerExceptionResolver());
     }
 
     //    @Bean
